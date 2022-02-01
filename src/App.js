@@ -1,17 +1,14 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import { ImCross, ImSpinner11 } from "react-icons/im";
 import { FaDotCircle } from "react-icons/fa";
 import Field from "./components/Field";
-
-// TODO changing player after turn
-// FIX fields rendering
 
 function reducer(state, action) {
   switch (action.type) {
     case "move":
       let newScore = [...state.scoreBoard];
       const nextTurn = !state.turn;
-      newScore[action.row][action.col] = state.turn ? 'x' : 'o';
+      newScore[action.row][action.col] = state.turn ? "x" : "o";
       return { scoreBoard: newScore, turn: nextTurn };
     case "reset":
       return {
@@ -28,7 +25,6 @@ function reducer(state, action) {
 }
 
 const App = () => {
-  const [board, setBoard] = useState(null);
   const [gameState, dispatchGameState] = useReducer(reducer, {
     scoreBoard: [
       ["", "", ""],
@@ -38,11 +34,11 @@ const App = () => {
     turn: true,
   });
 
-  const handleMove = ({ row, col }) => {
+  const handleMove = ({ rowIndex, colIndex }) => {
     dispatchGameState({
       type: "move",
-      row,
-      col,
+      row: rowIndex,
+      col: colIndex,
     });
   };
 
@@ -51,26 +47,6 @@ const App = () => {
       type: "reset",
     });
   };
-
-  const renderBoard = () => {
-    const newBoard = [];
-    for (let i = 0; i < 9; i++) {
-      newBoard.push(
-        <Field
-          key={i}
-          index={i}
-          turn={gameState.turn ? 1 : 0}
-          handleMove={handleMove}
-          classes={`board__field`}
-        />
-      );
-    }
-    return newBoard;
-  };
-
-  useEffect(() => {
-    setBoard(renderBoard());
-  }, []);
 
   useEffect(() => {
     console.log(gameState);
@@ -99,7 +75,18 @@ const App = () => {
           <ImSpinner11 className="" />
         </button>
       </div>
-      {board}
+      {gameState.scoreBoard.map((rows, rowIndex) => {
+        return rows.map((field, colIndex) => (
+          <Field
+            key={colIndex}
+            rowIndex={rowIndex}
+            colIndex={colIndex}
+            turn={gameState.turn ? 1 : 0}
+            handleMove={handleMove}
+            classes={`board__field`}
+          />
+        ));
+      })}
     </div>
   );
 };

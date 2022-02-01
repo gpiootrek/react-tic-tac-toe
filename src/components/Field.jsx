@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { FaDotCircle } from "react-icons/fa";
 
-const Field = ({ index, turn, handleMove, classes }) => {
-  const row = Math.floor(index / 3);
-  const col = index % 3;
+const Field = ({ rowIndex, colIndex, turn, handleMove, classes }) => {
   const [icon, setIcon] = useState(null);
   const [isDisabled, setIsDisabled] = useState(false);
 
   const handleFieldClick = () => {
-    handleMove({ row, col });
+    handleMove({ rowIndex, colIndex });
     setIcon(
       turn ? (
         <ImCross className="board__icon board__icon--cross" />
