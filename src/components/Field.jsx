@@ -7,6 +7,7 @@ const Field = ({ index, turn, handleMove, classes }) => {
   const col = index % 3;
   const [icon, setIcon] = useState(null);
   const [isDisabled, setIsDisabled] = useState(false);
+
   const handleFieldClick = () => {
     handleMove({ row, col });
     setIcon(
