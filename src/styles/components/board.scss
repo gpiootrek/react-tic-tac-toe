@@ -20,7 +20,17 @@
   }
 
   &__info {
-    grid-area: 1 / span 3;
+    &--top {
+      grid-area: 1 / span 3;
+    }
+    &--bottom {
+      grid-area: 5 / span 3;
+    }
+
+    &__icon {
+      font-size: 2rem;
+      margin-right: 12px;
+    }
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 12px;
@@ -60,13 +70,43 @@
   }
 
   &__icon {
-    font-size: 2rem;
-    margin-right: 12px;
+    font-size: 2.5rem;
     &--circle {
       color: #f5cc00;
     }
     &--cross {
       color: #139992;
+    }
+  }
+
+  &__score {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #1b1b1b;
+    padding: 10px;
+    &__info {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+    }
+    &__text {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    &--player-1 {
+      background: #139992;
+    }
+
+    &--ties {
+      background: #ebebeb;
+    }
+
+    &--player-2 {
+      background: #f5cc00;
     }
   }
 }

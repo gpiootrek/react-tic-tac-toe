@@ -1,0 +1,80 @@
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  inset: 0;
+  background: rgba($color: #000000, $alpha: 0.2);
+  backdrop-filter: blur(12px);
+}
+
+.overlay {
+  z-index: 2;
+}
+
+.modal {
+  width: 100vw;
+  height: 25vh;
+  position: absolute;
+  inset: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  &__score {
+    background: #031229;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__winner-info {
+    font-size: 1.5rem;
+    color: #c7c7c7;
+  }
+
+  &__winner {
+    display: flex;
+    align-items: center;
+  }
+
+  &__winner,
+  &__winner-icon {
+    text-transform: uppercase;
+    font-size: 4rem;
+    margin: 8px 20px;
+    &--x {
+      color: #139992;
+    }
+    &--o {
+      color: #f5cc00;
+    }
+  }
+
+  &__button {
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: inherit;
+    text-transform: uppercase;
+    margin: 0 16px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    outline: none;
+    border: 0;
+    color: #1b1b1b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &--quit {
+      background: #c7c7c7;
+      border-bottom: 4px solid #979797;
+      &:hover {
+        background: #979797;
+      }
+    }
+    &--next {
+      background: #f5cc00;
+      border-bottom: 4px solid #d1ae00;
+      &:hover {
+        background: #d1ae00;
+      }
+    }
+  }
+}
